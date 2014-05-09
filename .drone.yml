@@ -1,0 +1,10 @@
+image: ubuntu:14.04
+git:
+  depth: 1
+script:
+  - cd atom; script/build
+  - cd atom; script/build makedeb
+deploy:
+  bash:
+    script:
+     - curl -T /tmp/atom-build -udz0ny:d23ca315f563456bce076b7046d1ac774e1be2ff9d659e30052ab3c166b8cc14 https://api.bintray.com/content/dz0ny/atomio/atom/$(git describe)/atom.deb
